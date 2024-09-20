@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,7 +8,16 @@ public class Teacher : MonoBehaviour
 {
     [SerializeField] private float radius;
     [SerializeField] private LayerMask studentLayerMask;
-   
+    private Transform CurrentTarget;
+    [SerializeField] private Transform PointA;
+    [SerializeField] private Transform PointB;
+    [SerializeField] private Rigidbody2D Rigid;
+    [SerializeField] private BoxCollider2D boxcol;
+
+    private void Awake()
+    {
+       CurrentTarget = PointB.transform;
+    }
     private void Update()
     {
         if(FindStudent() == true)
@@ -15,6 +25,8 @@ public class Teacher : MonoBehaviour
             Debug.Log("Da tim thay hoc sinh");
 
         }
+        
+        
     }
     private void OnDrawGizmosSelected()
     {
@@ -24,7 +36,8 @@ public class Teacher : MonoBehaviour
     private bool FindStudent()
     {
         RaycastHit2D ray = Physics2D.CircleCast(transform.position, radius,(Vector2)transform.position,0f,studentLayerMask);
-        Debug.Log("Tim hoc sinh");
+
         return ray;
     }
+   
 }
