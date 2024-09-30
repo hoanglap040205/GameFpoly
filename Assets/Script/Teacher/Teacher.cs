@@ -12,7 +12,7 @@ public class Teacher : MonoBehaviour
     [SerializeField] private Transform PointA;
     [SerializeField] private Transform PointB;
     [SerializeField] private Rigidbody2D Rigid;
-    [SerializeField] private BoxCollider2D boxcol;
+    [SerializeField] private CircleCollider2D circlecol;
 
     private void Awake()
     {
