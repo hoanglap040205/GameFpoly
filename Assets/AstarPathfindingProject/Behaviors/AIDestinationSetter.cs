@@ -16,7 +16,8 @@ namespace Pathfinding {
 	public class AIDestinationSetter : VersionedMonoBehaviour {
 		/// <summary>The object that the AI should move to</summary>
 		public Transform target;
-		IAstarAI ai;
+		
+        IAstarAI ai;
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -35,5 +36,9 @@ namespace Pathfinding {
 		void Update () {
 			if (target != null && ai != null) ai.destination = target.position;
 		}
+		 public void SetTarget(Transform _target)
+		 {
+			target = _target;
+		 }
 	}
 }

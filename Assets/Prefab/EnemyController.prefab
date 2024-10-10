@@ -15,8 +15,10 @@ GameObject:
   - component: {fileID: 8644361274246796268}
   - component: {fileID: 7277201042194435048}
   - component: {fileID: 26641192115551388}
+  - component: {fileID: 2865519272457612759}
+  - component: {fileID: 7080480631556930523}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,6 +207,30 @@ CircleCollider2D:
   m_Offset: {x: -0.0013663173, y: -0.02000001}
   serializedVersion: 2
   m_Radius: 0.47863364
+--- !u!114 &2865519272457612759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791979443052349957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aa6aabd160ca84f97ae9977ad3e629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7080480631556930523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791979443052349957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de008f59c570b8945a9e0b5abe2a337b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4913245287036367498
 GameObject:
   m_ObjectHideFlags: 0
