@@ -27,6 +27,7 @@ public class TeacherController : MonoBehaviour
         else
         {
            // Debug.Log("Lai tron roi");
+
         }
         
         setTarget.SetTarget(targetPatrol.targetWaypoint.transform); 
