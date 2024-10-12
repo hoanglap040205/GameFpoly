@@ -10,6 +10,8 @@ public class TeacherController : MonoBehaviour
     [SerializeField] private LayerMask studentLayerMask;
     [SerializeField] PatrolTeacher targetPatrol;
     public AIDestinationSetter setTarget;
+    public StudentController student;
+    private float timeChase = 0f;
 
 
     private void Awake()
@@ -21,16 +23,30 @@ public class TeacherController : MonoBehaviour
     {
         if (FindStudent() == true)
         {
-           // Debug.Log("Da tim thay hoc sinh");
+            timeChase = 2f;
+            setTarget.SetTarget(student.transform);
+
 
         }
         else
         {
-           // Debug.Log("Lai tron roi");
+           Debug.Log("Lai tron roi");
+            
+            if (timeChase > 0)
+            {
+                setTarget.SetTarget(student.transform);
+                timeChase -= Time.deltaTime;
+            }
+            else
+            {
+                setTarget.SetTarget(targetPatrol.targetWaypoint.transform);
+            }
 
+            
+            
         }
         
-        setTarget.SetTarget(targetPatrol.targetWaypoint.transform); 
+       
     }
     // Update is called once per frame
     private void OnDrawGizmosSelected()
@@ -40,8 +56,9 @@ public class TeacherController : MonoBehaviour
     }
     private bool FindStudent()
     {
-        RaycastHit2D ray = Physics2D.CircleCast(transform.position, radius, (Vector2)transform.position, 0f, studentLayerMask);
+        RaycastHit2D ray = Physics2D.CircleCast(transform.position, radius, Vector2.zero, 0f, studentLayerMask);
+        
 
-        return ray;
+        return ray.collider != null;
     }
 }

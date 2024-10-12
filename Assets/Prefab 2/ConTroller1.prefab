@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2362499677665230613}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -0.505, z: 0}
+  m_LocalPosition: {x: 0.08, y: -1.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.5
+  radius: 1.5
   height: 2.21
   canMove: 1
   maxSpeed: 3
@@ -288,9 +288,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0013663173, y: -0.02000001}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.47863364
+  m_Radius: 1.4
 --- !u!114 &1255864729296526333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,3 +326,4 @@ MonoBehaviour:
     m_Bits: 64
   targetPatrol: {fileID: 1255864729296526333}
   setTarget: {fileID: 4890464880715168542}
+  student: {fileID: 0}
