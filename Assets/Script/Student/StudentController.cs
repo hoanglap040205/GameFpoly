@@ -11,24 +11,30 @@ public class StudentController : MonoBehaviour
     private float inPutvertical;
     private float accelerate = 1;
     [SerializeField] private float timeAccelerate = 3f;
-    [SerializeField] private float timeAccelerateCoolDown = 5f;
     private Stamina stamina;
-    //private bool isAccelerate;
+    public TeacherController teacher;
+    public bool isCatched;
 
 
 
     private void Awake()
     {
+        isCatched = teacher.isCatchStudent;
         rigid = GetComponent<Rigidbody2D>();
         cirCol = GetComponent<CircleCollider2D>();
         stamina = GetComponent<Stamina>();
-
     }
     private void Update()
     {
+        isCatched = teacher.isCatchStudent;
         Accelerate();
-       
-        MoveMent();
+        if (!teacher.isCatchStudent)
+        {
+            MoveMent();
+        }
+        //MoveMent();
+
+
     }
     private void MoveMent()
     {
@@ -52,8 +58,15 @@ public class StudentController : MonoBehaviour
         else
         {
             //isAccelerate = false;
+            accelerate = 1f;
+
         }
     }
+
+    /*public bool Canmove()
+    {
+        return true;
+    }*/
 
 
 }
