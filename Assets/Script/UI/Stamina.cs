@@ -6,43 +6,41 @@ public class Stamina : MonoBehaviour
 {
     public float startStamina;
     public float currentStamina;
-    private bool isCatching = false;
     private StudentController student;
     private void Awake()
     {
         currentStamina = startStamina;
         student = GetComponent<StudentController>();
     }
-    private void Update()
-    {
-        
-        /*if (Input.GetKey(KeyCode.F))
-        {
-            TakeStamina();
-        }*/
-        
-
-
-    }
+    
     public void TakeStamina(float _StaminaAmount)
     {
         if (currentStamina > 0)
         {
             
             currentStamina = Mathf.Clamp(currentStamina - _StaminaAmount, 0, 100);
+            Debug.Log("the luc con lai " + currentStamina);
+           // Debug.Log("Dang tru the luc");
         }
-        else if (currentStamina <= 0 && !student.isCatched)
+        else if (currentStamina <= 0)
         {
-            Debug.Log("het the luc roi");
-        }
-        else if(currentStamina <= 0 && student.isCatched)
-        {
-            
-            Debug.Log("bi bat");
+            Debug.Log("Het the luc");
+            HandleOutOfStamina();
         }
         
+        
     }
-
+    private void HandleOutOfStamina()
+    {
+        if (student.canMove)
+        {
+            Debug.Log("het stamina");
+        }
+        else if (!student.canMove)
+        {
+            Debug.Log("bi bat");
+        }
+    }
     public void AddStamina(float _staminaCollectionAmount)
     {
         currentStamina = Mathf.Clamp(currentStamina + _staminaCollectionAmount, 0, 100);

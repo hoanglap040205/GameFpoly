@@ -1,39 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class myEvent : UnityEvent
+{
+
+}
 
 public class StudentController : MonoBehaviour
 {
+    public static myEvent EnterChestEvent = new myEvent();
+    public static myEvent ExitChestEvent = new myEvent();
+
     private Rigidbody2D rigid;
     private CircleCollider2D cirCol;
-    [SerializeField] private float moveSpeed;
+    private Animator anim;
+
+    [SerializeField] private float moveSpeed;//toc do chay
     private float inPutHorizontal;
     private float inPutvertical;
-    private float accelerate = 1;
-    [SerializeField] private float timeAccelerate = 3f;
+    private float accelerate = 1;//tang toc
+    public bool canMove;
+
     private Stamina stamina;
     public TeacherController teacher;
-    public bool isCatched;
 
 
 
     private void Awake()
     {
-        isCatched = teacher.isCatchStudent;
+        EnterChestEvent.AddListener(EnterChest);
+        ExitChestEvent.AddListener(ExitChest);
+
+        anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         cirCol = GetComponent<CircleCollider2D>();
         stamina = GetComponent<Stamina>();
+        canMove = true;
     }
     private void Update()
     {
-        isCatched = teacher.isCatchStudent;
         Accelerate();
-        if (!teacher.isCatchStudent)
+        if(canMove)
         {
             MoveMent();
         }
-        //MoveMent();
-
+       
 
     }
     private void MoveMent()
@@ -45,28 +58,48 @@ public class StudentController : MonoBehaviour
 
     private void Accelerate()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && stamina.GetComponent<Stamina>().currentStamina >0f)
-        {
-            accelerate = 1.5f;
-            Debug.Log("dang tang toc");
-            stamina.GetComponent<Stamina>().TakeStamina(Time.deltaTime);
+        //fix loi kiem tra stamina
 
-            //isAccelerate = true;
-            //The luc trong 5s
-            //toi da co the dung the luc trong khoang 5s het thi hoi theo thoi gian
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if(stamina.currentStamina > 0)
+            {
+                accelerate = 1.5f;
+                Debug.Log("dang tang toc");
+                stamina.TakeStamina(Time.deltaTime);
+            }
+            else
+            {
+                stamina.TakeStamina(Time.deltaTime);
+
+            }
+
+
         }
         else
         {
-            //isAccelerate = false;
             accelerate = 1f;
 
         }
     }
 
-    /*public bool Canmove()
+    private void EnterChest()
     {
-        return true;
-    }*/
+        anim.SetTrigger("EnterChest");
+        canMove = false;
+        cirCol.enabled = false;
+    }
+    private void ExitChest()
+    {
+        cirCol.enabled = true;
+        canMove = true;
+        anim.SetTrigger("ExitChest");
+        
+
+
+    }
+
+
 
 
 }
