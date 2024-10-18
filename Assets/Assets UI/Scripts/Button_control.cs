@@ -11,11 +11,9 @@ public class Button_control : MonoBehaviour
     public GameObject Dang_ky_screen;
     public GameObject Quit_screen;
     public GameObject Menu_screen;
-    public GameObject Levels_screen;
     public GameObject Setting_screen;
     public GameObject HighScores_screen;
     [Header("Các số scene")]
-    public int PlayScene;
     public int Level_1_scene;
     public int Level_2_scene;
     public int Level_3_scene;
@@ -53,6 +51,7 @@ public class Button_control : MonoBehaviour
     {
         Dang_nhap_screen.SetActive(false);
         Account_screen.SetActive(true);
+        Debug.Log("dung");
     }
     //Nút ở màn hình đăng ký
     public void Back_SignUp()
@@ -61,15 +60,6 @@ public class Button_control : MonoBehaviour
         Account_screen.SetActive(true);
     }
     //Nút ở màn hình menu
-    public void Play()
-    {
-        SceneManager.LoadScene(PlayScene);
-    }
-    public void Levels()
-    {
-        Menu_screen.SetActive(false);
-        Levels_screen.SetActive(true);
-    }
     public void Settings()
     {
         Menu_screen.SetActive(false);
@@ -80,17 +70,12 @@ public class Button_control : MonoBehaviour
         Menu_screen.SetActive(false);
         HighScores_screen.SetActive(true);
     }
-    public void Back_Menu()
+    public void Back_menu()
     {
-        Account_screen.SetActive(true);
         Menu_screen.SetActive(false);
+        Account_screen.SetActive(true);
     }
     //Nút ở màn hình Levels
-    public void Back_Levels()
-    {
-        Levels_screen.SetActive(false);
-        Menu_screen.SetActive(true);
-    }
     public void Level_1()
     {
         SceneManager.LoadScene(Level_1_scene);
