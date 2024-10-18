@@ -38,7 +38,7 @@ public class Stamina : MonoBehaviour
         }
         else if (!student.canMove)
         {
-            Debug.Log("bi bat");
+            GameManager.gameOverEvent.Invoke();
         }
     }
     public void AddStamina(float _staminaCollectionAmount)

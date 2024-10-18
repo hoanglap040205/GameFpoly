@@ -20,17 +20,13 @@ public class KeyController : MonoBehaviour
         if (collision.CompareTag("player"))
         {
             Debug.Log("ban nhan duoc chia khoa");
-            isDestroy = true;
             Destroy(gameObject);
+            GameManager.instance.keyCollected++;
+            Debug.Log("Count: " + GameManager.instance.keyCollected);
         }
     }
      private void KeyCollection()
     {
         capsuleCol.enabled = true;
-        if (isDestroy)
-        {
-            GameManager.instance.countNumber += 1;
-        }
-        Debug.Log("Count: " + GameManager.instance.countNumber);
     }
 }
