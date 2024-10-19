@@ -3053,7 +3053,7 @@ GameObject:
   - component: {fileID: 472485897}
   - component: {fileID: 472485896}
   m_Layer: 5
-  m_Name: "T\xEAn game"
+  m_Name: Name game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
