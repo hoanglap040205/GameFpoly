@@ -12,25 +12,32 @@ public class GameManager : MonoBehaviour
 {
     public static EventManager gameOverEvent = new EventManager();
     public static EventManager gameWinEvent = new EventManager();
+
     public static GameManager instance;
+    public TextMeshProUGUI timeText;
+
     public int keyCollected = 0;
     public float timeRemaining = 180f;
     private bool isTimeRemain;
-    public TextMeshProUGUI timeText;
+    public string currentPlayer;
+    private int levelCompleted;
     private void Awake()
     {
+        levelCompleted = 0;
         gameOverEvent.AddListener(GameOver);
         gameWinEvent.AddListener(GameWin);
         if (instance == null)
         {
             instance = this;
         }
+        DontDestroyOnLoad(instance);
         isTimeRemain = true;
+        currentPlayer = UiManager.instanceUI.playerLogin;
+        Debug.Log("Player Name:" +currentPlayer);
     }
 
     private void Update()
     {
-     
      CheckTimeRemain();
      DisPlayTimeRemain();
     }
@@ -72,6 +79,8 @@ public class GameManager : MonoBehaviour
     private void GameWin()
     {
         Debug.Log("Ban da chien thang");
+        levelCompleted++;
+        Debug.Log("level current" +levelCompleted);
     }
 
 
