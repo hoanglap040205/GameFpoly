@@ -82,7 +82,7 @@ public class StudentController : MonoBehaviour
 
         }
     }
-
+    //nguoi choi chui vao trong ruong
     private void EnterChest()
     {
         anim.SetTrigger("EnterChest");
@@ -94,10 +94,8 @@ public class StudentController : MonoBehaviour
         cirCol.enabled = true;
         canMove = true;
         anim.SetTrigger("ExitChest");
-        
-
-
     }
+    
 
 
 

@@ -37,8 +37,8 @@ public class TeacherController : MonoBehaviour
             timeChaserToCatchPlayer -= Time.deltaTime;
             if (timeChaserToCatchPlayer <= 0f)
             {
-                Debug.Log("Tum duoc roi");
                 PlayerHasBeenCaught();
+                GameManager.gameOverEvent.Invoke();
 
             }
         }

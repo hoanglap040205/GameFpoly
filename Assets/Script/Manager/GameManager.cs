@@ -30,10 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-     if(keyCollected == 5)
-     {
-            Debug.Log("Ban da co du chia khoa");
-     }
+     
      CheckTimeRemain();
      DisPlayTimeRemain();
     }
@@ -55,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("End game");
+            GameOver();
         }
     }
 

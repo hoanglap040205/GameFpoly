@@ -19,7 +19,7 @@ public class Stamina : MonoBehaviour
         {
             
             currentStamina = Mathf.Clamp(currentStamina - _StaminaAmount, 0, 100);
-            Debug.Log("the luc con lai " + currentStamina);
+            
            // Debug.Log("Dang tru the luc");
         }
         else if (currentStamina <= 0)

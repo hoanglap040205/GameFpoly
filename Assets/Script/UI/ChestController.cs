@@ -14,7 +14,8 @@ public class ChestController : MonoBehaviour
         boxCol = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
     }
-
+    //Them chuc nang nhan giu de mo ruong
+    //Nhan giu du 5s thi ruong open
     private void Update()
     {
         if (isPlayerInRange)
