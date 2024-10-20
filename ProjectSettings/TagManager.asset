@@ -43,3 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Enviroment
+    uniqueID: 2358581489
+    locked: 0
+  - name: People
+    uniqueID: 71601855
+    locked: 0
+  - name: OnGround
+    uniqueID: 3032195359
+    locked: 0

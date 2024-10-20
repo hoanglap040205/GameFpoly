@@ -25,12 +25,12 @@ public class Stamina : MonoBehaviour
         else if (currentStamina <= 0)
         {
             Debug.Log("Het the luc");
-            HandleOutOfStamina();
+           // HandleOutOfStamina();
         }
         
         
     }
-    private void HandleOutOfStamina()
+    /*private void HandleOutOfStamina()
     {
         if (student.canMove)
         {
@@ -40,7 +40,7 @@ public class Stamina : MonoBehaviour
         {
             GameManager.gameOverEvent.Invoke();
         }
-    }
+    }*/
     public void AddStamina(float _staminaCollectionAmount)
     {
         currentStamina = Mathf.Clamp(currentStamina + _staminaCollectionAmount, 0, 100);

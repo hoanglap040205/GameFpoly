@@ -41,10 +41,11 @@ public class StudentController : MonoBehaviour
     }
     private void Update()
     {
-        Accelerate();
+        
         if(canMove)
         {
             MoveMent();
+            Accelerate();
         }
        
 
@@ -58,8 +59,6 @@ public class StudentController : MonoBehaviour
 
     private void Accelerate()
     {
-        //fix loi kiem tra stamina
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if(stamina.currentStamina > 0)
@@ -68,32 +67,25 @@ public class StudentController : MonoBehaviour
                 Debug.Log("dang tang toc");
                 stamina.TakeStamina(Time.deltaTime);
             }
-            else
-            {
-                stamina.TakeStamina(Time.deltaTime);
-
-            }
-
-
         }
         else
         {
             accelerate = 1f;
-
         }
     }
     //nguoi choi chui vao trong ruong
     private void EnterChest()
     {
-        anim.SetTrigger("EnterChest");
         canMove = false;
+        rigid.velocity = Vector2.zero;
+        anim.SetTrigger("EnterChest");
         cirCol.enabled = false;
     }
     private void ExitChest()
     {
-        cirCol.enabled = true;
-        canMove = true;
         anim.SetTrigger("ExitChest");
+        canMove = true;
+        cirCol.enabled = true;
     }
     
 

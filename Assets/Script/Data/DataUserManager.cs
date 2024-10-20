@@ -5,10 +5,8 @@ using UnityEngine;
 public class DataUserManager : MonoBehaviour
 {
     private string filePath;
-    public string currentPlayer;
     private void Start()
     {
-        currentPlayer = UiManager.instanceUI.playerLogin;
         
         filePath = Application.persistentDataPath + "/users.json";
         if (!File.Exists(filePath))
