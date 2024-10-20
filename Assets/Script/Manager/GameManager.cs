@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public GameObject gameWin;
+    public GameObject gameOver;
+
     public int keyCollected = 0;
     public string currentPlayer;
     private void Awake()
@@ -31,11 +34,13 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Game Over");
+        
     }
 
     private void GameWin()
     {
         Debug.Log("Ban da chien thang");
+        gameWin.SetActive(true);
     }
 
 
