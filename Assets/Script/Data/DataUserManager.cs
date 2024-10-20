@@ -95,8 +95,58 @@ public class DataUserManager : MonoBehaviour
         File.WriteAllText(filePath, json);
     }
 
+ 
+    public List<User> GetTop3Players()
+    {
+        List<User> users = LoadUsersFromFile();
+        List<User> validUsers = new List<User>();
+
+        // Them danh sach neu nguoi do hoan thanh it nhat mot man choi
+        foreach (var user in users)
+        {
+            if (user.playedLevels.Count > 0)
+            {
+                validUsers.Add(user);
+            }
+        }
+
+        // Sap xep
+        validUsers.Sort((a, b) =>
+        {
+            // So sanh 
+            int levelComparison = b.playedLevels.Count.CompareTo(a.playedLevels.Count); // Sap xep giam dan
+            if (levelComparison == 0)
+            {
+                // Neu so man bang nhau thi so sanh thoi gian
+                for (int i = 0; i < a.playedLevels.Count; i++)
+                {
+                    // Kiem tra xem nguoi choi co cung so man hay khong
+                    if (i >= b.playedLevels.Count)
+                        return -1; // Nguoi choi b co so man thap hon thi xep sau
+
+                    // So sanh thoi gian tung man choi
+                    int timeComparison = a.playedLevels[i].timeSpent.CompareTo(b.playedLevels[i].timeSpent);
+                    if (timeComparison != 0)
+                    {
+                        return timeComparison; // Thoi gian choi it hon se dung truoc
+                    }
+                }
+            }
+            return levelComparison;
+        });
+
+        // Tra ve top 3
+        List<User> topPlayers = new List<User>();
+        for (int i = 0; i < Mathf.Min(3, validUsers.Count); i++)
+        {
+            topPlayers.Add(validUsers[i]);
+        }
+
+        return topPlayers;
+    }
+
+
     // Tai danh sach nguoi dung tu file json
-    
     private List<User> LoadUsersFromFile()
     {
         if (File.Exists(filePath))
