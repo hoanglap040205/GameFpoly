@@ -2605,6 +2605,22 @@ PrefabInstance:
       propertyPath: currentStamina
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5426522683823383866, guid: 75f71181150f43c4dbf3b1f54ebaf53d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1046495076, guid: a825b77df895930499fa2997bebc0914, type: 3}
+    - target: {fileID: 5426522683823383866, guid: 75f71181150f43c4dbf3b1f54ebaf53d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426522683823383866, guid: 75f71181150f43c4dbf3b1f54ebaf53d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426522683823383866, guid: 75f71181150f43c4dbf3b1f54ebaf53d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6814635312896388103, guid: 75f71181150f43c4dbf3b1f54ebaf53d, type: 3}
       propertyPath: m_Constraints
       value: 4
