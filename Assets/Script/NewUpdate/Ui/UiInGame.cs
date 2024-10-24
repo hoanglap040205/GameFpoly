@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UiInGame : MonoBehaviour
 {
+
     public GameObject[] panelIngame;
     public GameObject pauseScreen;
     private bool isOpened;
@@ -14,8 +15,17 @@ public class UiInGame : MonoBehaviour
     public float timeRemaining;
     private bool isTimeRemain;
     public TextMeshProUGUI timeText;
+
+    public static UiInGame instance;
+
+    
+
     private void Start()
     {
+        if(instance == null)
+        {
+            instance  = this;
+        }
         isTimeRemain = true;
         timeRemaining = 180f;
         isOpened = false;
@@ -88,5 +98,7 @@ public class UiInGame : MonoBehaviour
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
     }
+
+    
 
 }

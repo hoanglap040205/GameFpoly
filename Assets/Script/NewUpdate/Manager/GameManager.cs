@@ -10,9 +10,10 @@ public class GameManager : MonoBehaviour
     public static UnityEvent gameWinEvent = new UnityEvent();
 
     public static GameManager instance;
-
     public GameObject gameWin;
     public GameObject gameOver;
+
+    public List<string> words = new List<string>();
     private void Awake()
     {
         gameOverEvent.AddListener(GameOver);
@@ -23,7 +24,11 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(instance);
     }
-    
+
+    private void Update()
+    {
+        
+    }
 
     private void GameOver()
     {

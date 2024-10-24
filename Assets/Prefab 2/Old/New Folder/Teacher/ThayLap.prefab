@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[2]
       value: 
       objectReference: {fileID: 2757583032215617205}
+    - target: {fileID: 2362499677665230613, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2854032686939404667, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -252,9 +256,17 @@ PrefabInstance:
       propertyPath: radius
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4289217446772987348, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: radius
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4957612332512004116, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
       propertyPath: m_Name
       value: ConTroller1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957612332512004116, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5999115354460509497, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
       propertyPath: m_Sprite

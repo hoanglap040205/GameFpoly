@@ -172,6 +172,22 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.92
       objectReference: {fileID: 0}
+    - target: {fileID: 1255864729296526333, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1255864729296526333, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 915248595612241941}
+    - target: {fileID: 1255864729296526333, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 4142550659908194530}
+    - target: {fileID: 1255864729296526333, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 8171745024839185475}
     - target: {fileID: 2854032686939404667, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -224,9 +240,17 @@ PrefabInstance:
       propertyPath: radius
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4289217446772987348, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: radius
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4957612332512004116, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
       propertyPath: m_Name
       value: ConTroller1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957612332512004116, guid: 43cdc785bd6892e48a7fb33ef335b546, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
