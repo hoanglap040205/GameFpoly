@@ -120,6 +120,8 @@ public class AccountUiManager : MonoBehaviour
             pass = "";
         }
     }
+    //tu dong dang nhap tai khoan gan nhat
+
     public void AutoLogin( string user, string pass)
     {
         Debug.LogWarning("user " + PlayerPrefs.GetString("UserName"));
@@ -138,7 +140,7 @@ public class AccountUiManager : MonoBehaviour
         }
         
     }
-
+    //Tu dong luu lai thong tin nguoi choi vua dnag nhap
     private void AutoSavePlayerLogin(string user, string pass)
     {
         PlayerPrefs.SetString("UserName", user);
@@ -147,7 +149,7 @@ public class AccountUiManager : MonoBehaviour
         Debug.Log("Save player login");
         Debug.Log("Ten nguoi choi vua dang nhap" +PlayerPrefs.GetString("UserName"));
     }
-
+    //kiem tra nguoi cuoi cung dang nhap
     private void CheckLastPlayerLogin(string user,string pass)
     {
         if(!string.IsNullOrEmpty(user) && !string.IsNullOrEmpty(pass))
