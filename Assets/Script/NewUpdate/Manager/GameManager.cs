@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,10 +11,12 @@ public class GameManager : MonoBehaviour
     public static UnityEvent gameWinEvent = new UnityEvent();
 
     public static GameManager instance;
+    private DataUserManager data;
     public GameObject gameWin;
     public GameObject gameOver;
-
     public List<string> words = new List<string>();
+
+
     private void Awake()
     {
         gameOverEvent.AddListener(GameOver);
@@ -24,16 +27,11 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(instance);
     }
-
-    private void Update()
-    {
-        
-    }
-
     private void GameOver()
     {
         Debug.Log("Game Over");
         gameOver.SetActive(true);
+        Time.timeScale = 0f;
         
     }
 
@@ -42,8 +40,19 @@ public class GameManager : MonoBehaviour
         Debug.Log("Ban da chien thang");
         UnLockLevel();
         gameWin.SetActive(true);
+        Time.timeScale = 0f;
     }
-
+     public bool IsGameWin()
+    {
+        if(words.Count == 5)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     private void UnLockLevel()
     {
        if(PlayerPrefs.GetInt("LevelCurrent") >= PlayerPrefs.GetInt("LevelMaxCurrent"))
@@ -52,5 +61,10 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
             Debug.Log("LevelMaxCurrent" + PlayerPrefs.GetInt("LevelMaxCurrent"));
         }
+       
     }
+    /*private void recordLevelCurrent()
+    {
+        
+    }*/
 }

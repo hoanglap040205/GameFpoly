@@ -7,9 +7,11 @@ public class ChestController : MonoBehaviour
     private BoxCollider2D boxCol;
     private bool isPlayerInRange;//Kiem tra xem player co trong khu vuc co the mo ruong khong
     private bool isPlayerInchest =false;//kiem tra xem player co trong ruong khong
+    private GameObject player;
     private void Awake()
     {
         boxCol = GetComponent<BoxCollider2D>();
+        player = GameObject.FindGameObjectWithTag("player");
     }
     //Them chuc nang nhan giu de mo ruong
     //Nhan giu du 5s thi ruong open
@@ -21,15 +23,12 @@ public class ChestController : MonoBehaviour
             {
                 if (!isPlayerInchest)//nguoi choi co the vao ruong
                 {
-                    StudentController.EnterChestEvent.Invoke();
-
-                    isPlayerInchest = !isPlayerInchest;//nguoi choi dang o trong ruong 
+                    StartCoroutine(EnterBee());
                 }
             }
         }else if (!isPlayerInRange && isPlayerInchest && Input.GetKeyDown(KeyCode.F))
         {
-            StudentController.ExitChestEvent.Invoke();
-            isPlayerInchest = !isPlayerInchest;//nguoi choi thoat ra khoi ruong
+            StartCoroutine(ExitBee());
         }
 
     }
@@ -48,4 +47,19 @@ public class ChestController : MonoBehaviour
              isPlayerInRange = false;
         }
     }
+    IEnumerator EnterBee()
+    {
+        yield return new WaitForSeconds(0.2f);
+        StudentController.EnterChestEvent.Invoke();
+        isPlayerInchest = !isPlayerInchest;//nguoi choi dang o trong ruong 
+    }
+     IEnumerator ExitBee()
+    {
+        yield return new WaitForSeconds(0.2f);
+            StudentController.ExitChestEvent.Invoke();
+        isPlayerInchest = !isPlayerInchest;//nguoi choi thoat ra khoi ruong
+
+    }
+
+
 }

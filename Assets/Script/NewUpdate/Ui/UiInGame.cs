@@ -16,20 +16,20 @@ public class UiInGame : MonoBehaviour
     private bool isTimeRemain;
     public TextMeshProUGUI timeText;
 
-    public static UiInGame instance;
+   // public static UiInGame instance;
 
     
 
     private void Start()
     {
-        if(instance == null)
+        /*if(instance == null)
         {
             instance  = this;
-        }
+        }*/
         isTimeRemain = true;
         timeRemaining = 180f;
         isOpened = false;
-        for(int i = 0; i< panelIngame.Length; i++)
+        for(int i = 0; i < panelIngame.Length; i++)
         {
             if (panelIngame[i].activeInHierarchy)
             {
@@ -41,11 +41,13 @@ public class UiInGame : MonoBehaviour
     private void Update()
     {
         DisPlayTimeRemain();
-        CheckTimeRemain();
+        //CheckTimeRemain();
     }
     public void OnClickPauseScreen()
     {
         isOpened = !isOpened;
+        float timeScaler = isOpened ? 0 : 1;
+        Time.timeScale = timeScaler;
         pauseScreen.SetActive(isOpened);
     }
 
@@ -53,6 +55,7 @@ public class UiInGame : MonoBehaviour
     {
         string levelPlayAgain = "Map" + PlayerPrefs.GetInt("LevelCurrent");
         SceneManager.LoadScene(levelPlayAgain);
+        Time.timeScale = 1f;
     }
 
     public void BackToMenu()
@@ -71,34 +74,50 @@ public class UiInGame : MonoBehaviour
     }
     //Check time
     //Check dieu kien kiem tra thoi gian
-    private void CheckTimeRemain()
+    private bool CheckTimeRemain()
     {
         if (isTimeRemain)
         {
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
+                return true;
             }
             else
             {
-                isTimeRemain = false;
                 timeRemaining = 0f;
+                isTimeRemain = false;
+                return false;
             }
         }
         else
         {
-            GameManager.gameOverEvent.Invoke();
+            return false;
         }
     }
     //hien thi thoi gian
     private void DisPlayTimeRemain()
     {
-        float minutes = Mathf.FloorToInt(timeRemaining / 60);
-        float seconds = Mathf.FloorToInt(timeRemaining % 60);
+        
+        if (CheckTimeRemain())
+        {
+            float minutes = Mathf.FloorToInt(timeRemaining / 60);
+            float seconds = Mathf.FloorToInt(timeRemaining % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else
+        {
+            timeText.text = "Thoi gian da het";
+            StartCoroutine(GameOver());
+        }
 
     }
 
-    
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GameManager.gameOverEvent.Invoke();
+    }
+
 
 }

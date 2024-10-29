@@ -13,38 +13,23 @@ public class Stamina : MonoBehaviour
         student = GetComponent<StudentController>();
     }
     
-    public void TakeStamina(float _StaminaAmount)
+    public bool TakeStamina(float _StaminaAmount)
     {
         if (currentStamina > 0)
         {
-            
             currentStamina = Mathf.Clamp(currentStamina - _StaminaAmount, 0, 100);
-            
-           // Debug.Log("Dang tru the luc");
+            Debug.Log(currentStamina);
+            return true;
         }
-        else if (currentStamina <= 0)
+        else
         {
-            Debug.Log("Het the luc");
-           // HandleOutOfStamina();
+            return false;
         }
-        
-        
     }
-    /*private void HandleOutOfStamina()
-    {
-        if (student.canMove)
-        {
-            Debug.Log("het stamina");
-        }
-        else if (!student.canMove)
-        {
-            GameManager.gameOverEvent.Invoke();
-        }
-    }*/
     public void AddStamina(float _staminaCollectionAmount)
+    
     {
         currentStamina = Mathf.Clamp(currentStamina + _staminaCollectionAmount, 0, 100);
-
     }
 
 

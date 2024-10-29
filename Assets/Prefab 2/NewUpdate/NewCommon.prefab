@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &434411128945291155
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8951906552352994175}
-  m_Layer: 0
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8951906552352994175
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 434411128945291155}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.481776, y: -3.7960513, z: 0.061077952}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 706353579002362920}
-  m_Father: {fileID: 7699603933278915747}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2731957890319482627
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8951906552352994175}
+  - {fileID: 706353579002362920}
   - {fileID: 8097436039958140545}
   - {fileID: 7504026875698043033}
   - {fileID: 3604654600581941664}
@@ -1212,7 +1180,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8951906552352994175}
+    m_TransformParent: {fileID: 7699603933278915747}
     m_Modifications:
     - target: {fileID: 3024146455284764867, guid: 614440ac2088bee469625cf8623ec55c, type: 3}
       propertyPath: gameWin
@@ -1232,15 +1200,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6716281084694092204, guid: 614440ac2088bee469625cf8623ec55c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.995119
+      value: 12.486657
       objectReference: {fileID: 0}
     - target: {fileID: 6716281084694092204, guid: 614440ac2088bee469625cf8623ec55c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.266601
+      value: -16.062653
       objectReference: {fileID: 0}
     - target: {fileID: 6716281084694092204, guid: 614440ac2088bee469625cf8623ec55c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.25259256
+      value: -0.19151461
       objectReference: {fileID: 0}
     - target: {fileID: 6716281084694092204, guid: 614440ac2088bee469625cf8623ec55c, type: 3}
       propertyPath: m_LocalRotation.w

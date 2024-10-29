@@ -5,20 +5,23 @@ using UnityEngine.Events;
 
 public class StudentController : MonoBehaviour
 {
+    [Header("Event")]
     public static UnityEvent EnterChestEvent = new UnityEvent();
     public static UnityEvent ExitChestEvent = new UnityEvent();
 
+    [Header("Componet")]
     private Rigidbody2D rigid;
     private CircleCollider2D cirCol;
     private Animator anim;
+    private Stamina stamina;
 
+    [Header("Properties")]
     [SerializeField] private float moveSpeed;//toc do chay
     private float inPutHorizontal;
     private float inPutvertical;
     private float accelerate = 1;//tang toc
     public bool canMove;
 
-    private Stamina stamina;
 
 
 
@@ -31,6 +34,8 @@ public class StudentController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         cirCol = GetComponent<CircleCollider2D>();
         stamina = GetComponent<Stamina>();
+        stamina = GetComponent <Stamina>();
+
         canMove = true;
     }
     private void Update()
@@ -38,13 +43,13 @@ public class StudentController : MonoBehaviour
         
         if(canMove)
         {
-            MoveMent();
             Accelerate();
+            MoveMent();
         }
-
-        
-       
-
+        else
+        {
+            rigid.velocity = Vector2.zero;
+        }
     }
     private void MoveMent()
     {
@@ -57,11 +62,17 @@ public class StudentController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            if(stamina.currentStamina > 0)
+            if(inPutHorizontal != 0 || inPutvertical != 0)
             {
-                accelerate = 1.5f;
-                Debug.Log("dang tang toc");
-                stamina.TakeStamina(Time.deltaTime);
+                if (stamina.TakeStamina(Time.deltaTime))
+                {
+                    accelerate = 1.5f;
+                    Debug.Log("dang tang toc");
+                }
+                else
+                {
+                    Debug.Log("Het nang luong");
+                }
             }
         }
         else
@@ -83,9 +94,4 @@ public class StudentController : MonoBehaviour
         canMove = true;
         cirCol.enabled = true;
     }
-    
-
-
-
-
 }
