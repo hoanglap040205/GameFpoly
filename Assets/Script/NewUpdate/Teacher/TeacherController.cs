@@ -29,6 +29,8 @@ public class TeacherController : MonoBehaviour
         ai =           GetComponent<AIPath>();
         isChase =      false;
         speedmax =     6.5f;
+        setTarget.SetTarget(targetPatrol.targetWaypoint.transform);
+
     }
 
     private void Update()
