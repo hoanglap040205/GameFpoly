@@ -5,17 +5,15 @@ using UnityEngine.Events;
 
 public class KeyController : MonoBehaviour
 {
-   // UnityEvent CollectedwordEvent = new UnityEvent();
     private BoxCollider2D boxCol;
     private bool isPlayerInRange;//Kiem tra nguoi choi co trong khu vuc nhat chia khoa khong
-    [SerializeField] private float timeCollectedKey;
     [SerializeField] private float timer;
     private string word;
+    //Sua thanh thoi gian
     public GameObject timebar;
     private void Awake()
     {
-        timeCollectedKey = 0f;
-        timer = 2f;
+        timer = 3f;
         boxCol = GetComponent<BoxCollider2D>();
         word = gameObject.name.ToUpper();
     }
@@ -26,7 +24,14 @@ public class KeyController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space) && isPlayerInRange)
             {
-                StartCoroutine(CheckWords());
+                timebar.SetActive(true);
+                timer -= Time.deltaTime;
+                Debug.Log(timer);
+                if(timer <= 0)
+                {
+                    CheckWords();
+                }
+                
             }
             else
             {
@@ -34,16 +39,16 @@ public class KeyController : MonoBehaviour
             }
         }
     }
-
-     IEnumerator CheckWords()
+    //kiem tra xem vua thu thap duoc chu nao
+     private void CheckWords()
     {
-        timebar.SetActive(true);
-        yield return new WaitForSeconds(timer);
-
         if (!GameManager.instance.words.Contains(word))
         {
             GameManager.instance.words.Add(word);
-            LetterUIController.instance.DisplayLetter(word);
+            if (GameManager.instance.words.Contains(word))
+            {
+                LetterUIController.instance.DisplayLetter(word);
+            }
         }
         Destroy(gameObject, 0.5f);
         Destroy(timebar);

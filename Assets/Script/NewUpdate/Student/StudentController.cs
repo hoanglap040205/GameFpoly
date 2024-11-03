@@ -17,13 +17,10 @@ public class StudentController : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField] private float moveSpeed;//toc do chay
-    private float inPutHorizontal;
-    private float inPutvertical;
+    private float inPutHorizontal;//Dau vao truc hoanh
+    private float inPutvertical;//Dau vao truc tung
     private float accelerate = 1;//tang toc
-    public bool canMove;
-
-
-
+    public bool canMove;//co the di chuyen
 
     private void Awake()
     {
@@ -34,7 +31,6 @@ public class StudentController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         cirCol = GetComponent<CircleCollider2D>();
         stamina = GetComponent<Stamina>();
-        stamina = GetComponent <Stamina>();
 
         canMove = true;
     }

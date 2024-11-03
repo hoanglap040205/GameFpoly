@@ -13,24 +13,32 @@ public class TeacherController : MonoBehaviour
     private AIDestinationSetter setTarget;
     private PatrolTeacher targetPatrol;
     private AIPath ai;
+    private CircleCollider2D cirC;
 
     [Header("Reference")]
     public StudentController student;
     [Header("properties")]
     [SerializeField] private float radius;//ban kinh phat hien nguoi choi
-    [SerializeField] private float speedmax;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float speedmax;//toc do toi da enemy co the dat toi
     private float timeChase = 0f;//thoi gian duoi theo nguoi choi
-    private bool isChase;
+    [SerializeField]private LayerMask playerLayer;
+    [SerializeField]private AudioClip audio;
     private void Awake()
     {
+        moveSpeed = 3f;
         anim =         GetComponent<Animator>();
+        cirC =         GetComponent<CircleCollider2D>();
         targetPatrol = GetComponent<PatrolTeacher>();
         setTarget =    GetComponent<AIDestinationSetter>();
         ai =           GetComponent<AIPath>();
-        isChase =      false;
-        speedmax =     6.5f;
-        setTarget.SetTarget(targetPatrol.targetWaypoint.transform);
+        speedmax =     3f;
 
+    }
+    private void Start()
+    {
+        setTarget.SetTarget(targetPatrol.targetWaypoint.transform);
+        ai.maxSpeed = moveSpeed;
     }
 
     private void Update()
@@ -42,26 +50,23 @@ public class TeacherController : MonoBehaviour
         Handles.color = Color.cyan;
         Handles.DrawWireDisc(transform.position, transform.forward, radius);
     }
-    private bool CheckDistanceToPlayer()
-    {
-        if(Vector2.Distance(transform.position,student.transform.position) < radius)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+
     private void ChasePlayer()
     {
-        if (CheckDistanceToPlayer())
+        if (CheckPlayerInRange())
         {
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.PlaySound(audio);
+            }
+            else
+            {
+                Debug.Log("Chua duoc khoi tao");
+            }
             timeChase = 3f;
             setTarget.SetTarget(student.transform);
             anim.SetBool("IsChase", true);
-            isChase = !isChase;
-            if (isChase && ai.maxSpeed <= speedmax)
+            if (ai.maxSpeed <= speedmax)
             {
                 ai.maxSpeed += (Time.deltaTime /2);
             }
@@ -77,13 +82,18 @@ public class TeacherController : MonoBehaviour
             }
             else
             {
-                isChase = !isChase;
+                SoundManager.instance.StopSound();
+                ai.maxSpeed = moveSpeed;
                 setTarget.SetTarget(targetPatrol.targetWaypoint.transform);
                 anim.SetBool("IsChase", false);
             }
         }
     }
-
+    private bool CheckPlayerInRange()
+    {
+        RaycastHit2D ray = Physics2D.CircleCast(transform.position, radius, Vector2.zero, 0f, playerLayer);
+        return ray.collider != null;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("player"))
@@ -95,6 +105,7 @@ public class TeacherController : MonoBehaviour
     IEnumerator HasBeenCaughtPlayer()
     {
         ai.canMove = false;
+        ai.maxSpeed = 0;
         yield return new WaitForSeconds(0.5f);
         Time.timeScale = 0f;
         GameManager.gameOverEvent.Invoke();

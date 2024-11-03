@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public List<string> words = new List<string>();
 
-
+    
     private void Awake()
     {
         gameOverEvent.AddListener(GameOver);
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(instance);
+        StartCoroutine(ReadyGame());
     }
     private void GameOver()
     {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+    //Win
     private void GameWin()
     {
         Debug.Log("Ban da chien thang");
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
         gameWin.SetActive(true);
         Time.timeScale = 0f;
     }
+    //Kiem tra xem da thu thap du chu chua
      public bool IsGameWin()
     {
         if(words.Count == 5)
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
+    //mo khoa level moi
     private void UnLockLevel()
     {
        if(PlayerPrefs.GetInt("LevelCurrent") >= PlayerPrefs.GetInt("LevelMaxCurrent"))
@@ -67,4 +71,13 @@ public class GameManager : MonoBehaviour
     {
         
     }*/
+    //Chuan bi vao game
+    IEnumerator ReadyGame()
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(3);
+        Time.timeScale = 1f;
+    }
+
+    
 }
