@@ -36,7 +36,6 @@ public class StudentController : MonoBehaviour
     }
     private void Update()
     {
-        
         if(canMove)
         {
             Accelerate();

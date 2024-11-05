@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
     private Animator anim;
     private BoxCollider2D boxCol;
+    private GameObject player;
     private void Awake()
     {
         anim = GetComponent<Animator>();
         boxCol = GetComponent<BoxCollider2D>();
+        player = GameObject.FindGameObjectWithTag("player");
         boxCol.enabled = false;
     }
     private void Update()
@@ -21,10 +24,10 @@ public class CheckPoint : MonoBehaviour
         }
     }
 
-
+    
     IEnumerator EnabledCol()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         boxCol.enabled = true;
     }
 
@@ -32,6 +35,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("player"))
         {
+           // StartCoroutine(MoveInBigBEE());
             GameManager.gameWinEvent.Invoke();
         }
     }

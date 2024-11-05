@@ -59,9 +59,26 @@ public class StatueBee : MonoBehaviour
     }
     IEnumerator EnterBee()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         StudentController.EnterChestEvent.Invoke();
+        StartCoroutine(MoveInStatuBEE());
+        
+        
         isPlayerInBee = !isPlayerInBee;//nguoi choi dang o trong ruong 
+    }
+
+    IEnumerator MoveInStatuBEE()
+    {
+
+        float timer = 0f;
+        while (timer < 0.3f)
+        {
+            player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position,3 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+            timer += Time.deltaTime;
+
+        }
+        
     }
     IEnumerator ExitBee()
     {

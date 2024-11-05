@@ -18,7 +18,6 @@ public class PatrolTeacher : MonoBehaviour
     }
     private void Update()
     {
-       //setTarget.SetTarget(targetWaypoint);
         SetTargetWayPoint();
     }
     private void SetTargetWayPoint()
