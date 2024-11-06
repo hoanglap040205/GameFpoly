@@ -61,6 +61,7 @@ public class UiInGame : MonoBehaviour
     public void BackToMenu()
     {
         SceneManager.LoadScene("Levels");
+        SoundManager.instance.StopSound();
     }
 
     public void NextLevel()

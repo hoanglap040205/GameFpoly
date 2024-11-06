@@ -9,11 +9,14 @@ public class KeyController : MonoBehaviour
     private bool isPlayerInRange;//Kiem tra nguoi choi co trong khu vuc nhat chia khoa khong
     [SerializeField] private float timer;
     private string word;
+
+    private GameObject player;
     //Sua thanh thoi gian
     public GameObject timebar;
     private void Awake()
     {
-        timer = 3f;
+        player = GameObject.FindGameObjectWithTag("player");
+        timer = 7f;
         boxCol = GetComponent<BoxCollider2D>();
         word = gameObject.name.ToUpper();
     }
@@ -50,6 +53,7 @@ public class KeyController : MonoBehaviour
                 LetterUIController.instance.DisplayLetter(word);
             }
         }
+        player.GetComponent<Stamina>().AddStamina(1f);
         Destroy(gameObject, 0.5f);
         Destroy(timebar);
     }

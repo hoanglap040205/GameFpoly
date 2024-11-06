@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEditor;
+
 
 
 public class TeacherController : MonoBehaviour
@@ -17,22 +19,26 @@ public class TeacherController : MonoBehaviour
 
     [Header("Reference")]
     public StudentController student;
+    public DataEnemy dataEnemy;
+    
     [Header("properties")]
-    [SerializeField] private float radius;//ban kinh phat hien nguoi choi
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float speedmax;//toc do toi da enemy co the dat toi
+    
+    private float radius;//ban kinh phat hien nguoi choi
+     private float moveSpeed;
+     private float speedmax;//toc do toi da enemy co the dat toi
     private float timeChase = 0f;//thoi gian duoi theo nguoi choi
     [SerializeField]private LayerMask playerLayer;
     [SerializeField]private AudioClip audio;
     private void Awake()
     {
-        moveSpeed = 3f;
         anim =         GetComponent<Animator>();
         cirC =         GetComponent<CircleCollider2D>();
         targetPatrol = GetComponent<PatrolTeacher>();
         setTarget =    GetComponent<AIDestinationSetter>();
         ai =           GetComponent<AIPath>();
-        speedmax =     3f;
+        speedmax =     dataEnemy.speedMaxData;
+        moveSpeed = dataEnemy.moveSpeedData;
+        radius = dataEnemy.radiusDat;
 
     }
     private void Start()
@@ -47,8 +53,10 @@ public class TeacherController : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
+        #if UNITY_EDITOR
         Handles.color = Color.cyan;
         Handles.DrawWireDisc(transform.position, transform.forward, radius);
+        #endif
     }
 
     private void ChasePlayer()
@@ -68,7 +76,7 @@ public class TeacherController : MonoBehaviour
             anim.SetBool("IsChase", true);
             if (ai.maxSpeed <= speedmax)
             {
-                ai.maxSpeed += (Time.deltaTime /2);
+                ai.maxSpeed += Time.deltaTime;
             }
         }
         else

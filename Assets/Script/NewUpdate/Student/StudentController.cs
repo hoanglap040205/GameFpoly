@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEditor;
 
 public class StudentController : MonoBehaviour
 {
@@ -16,11 +17,14 @@ public class StudentController : MonoBehaviour
     private Stamina stamina;
 
     [Header("Properties")]
-    [SerializeField] private float moveSpeed;//toc do chay
+    private float moveSpeed;//toc do chay
     private float inPutHorizontal;//Dau vao truc hoanh
     private float inPutvertical;//Dau vao truc tung
-    private float accelerate = 1;//tang toc
+    private float acceleration = 1;//tang toc
     public bool canMove;//co the di chuyen
+
+    [Header("Properties")] 
+    [SerializeField] private DataPlayer dataPlayer;
 
     private void Awake()
     {
@@ -33,7 +37,11 @@ public class StudentController : MonoBehaviour
         stamina = GetComponent<Stamina>();
 
         canMove = true;
+        moveSpeed = dataPlayer.moveSpeedData;
+        acceleration = dataPlayer.accelerationData;
+
     }
+    
     private void Update()
     {
         if(canMove)
@@ -50,7 +58,7 @@ public class StudentController : MonoBehaviour
     {
         inPutHorizontal = Input.GetAxisRaw("Horizontal");
         inPutvertical = Input.GetAxisRaw("Vertical");
-        rigid.velocity = new Vector2(inPutHorizontal, inPutvertical).normalized * moveSpeed * accelerate;
+        rigid.velocity = new Vector2(inPutHorizontal, inPutvertical).normalized * moveSpeed * acceleration;
     }
 
     private void Accelerate()
@@ -61,7 +69,7 @@ public class StudentController : MonoBehaviour
             {
                 if (stamina.TakeStamina(Time.deltaTime))
                 {
-                    accelerate = 1.5f;
+                    acceleration = 1.8f;
                     Debug.Log("dang tang toc");
                 }
                 else
@@ -72,7 +80,7 @@ public class StudentController : MonoBehaviour
         }
         else
         {
-            accelerate = 1f;
+            acceleration = 1f;
         }
     }
     //nguoi choi chui vao trong ruong
